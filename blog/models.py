@@ -22,7 +22,7 @@ class Comment(models.Model):
 
 class Post(models.Model):
   author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-  created_at = models.DateTimeField(auto_now_add=True)
+  created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
   modified_at = models.DateTimeField(auto_now=True)
   published_at = models.DateTimeField(blank=True, null=True)
   title = models.TextField(max_length=100)
