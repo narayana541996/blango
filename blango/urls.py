@@ -14,12 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from blog import views
+import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('post/<slug>/', views.post_detail, name='blog-post-detail'),
+    path('ip/', views.get_ip),
 ]
+
+if settings.DEBUG:
+  urlpatterns += [
+    path('__debug__/', include(debug_toolbar.urls))
+  ]
