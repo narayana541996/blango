@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser as User
 from django import template
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 @register.filter
 def author_details(author, current_user=None):
+  print('isinstance(author, User): ',isinstance(author, User))
   if not isinstance(author, User):
     return ''
 
