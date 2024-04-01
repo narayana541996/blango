@@ -1,0 +1,7 @@
+Hi,
+
+Please validate your email address to complete your account setup:
+{{ scheme }}://{{ request.get_host }}{% url "django_registration_activate" activation_key %}
+
+Thanks,
+The Blango Team

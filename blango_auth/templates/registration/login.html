@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load blog_extras crispy_forms_tags %}
+{% block title %}Blango Login{% endblock %}
+{% block content %}
+{% row 'justify-content-center' %}
+  {% col 'col-md-6' %}
+    {% if next %}
+      {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page.
+        Please login with an account that has the access.</p>
+      {% else %}
+      <p>Please login to see this page.</p>
+      {% endif %}
+    {% endif %}
+  {% endcol %}
+{% endrow %}
+{% row 'justify-content-center' %}
+  {% col 'col-md-6' %}
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-primary">Login</button>
+      <input type="hidden" name="next" value="{{ next }}">
+    </form>
+    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+  {% endcol %}
+{% endrow %}
+{% endblock %}

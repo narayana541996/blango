@@ -50,13 +50,14 @@ class Dev(Configuration):
     # Application definition
 
     INSTALLED_APPS = [
+        'blango_auth',
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-        'blango_auth',
+        
         'blog',
         'crispy_forms',
         'crispy_bootstrap5',
@@ -69,6 +70,9 @@ class Dev(Configuration):
     CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
     DJANGO_ADMINS = ['Codio, codio@startrek.com']
+
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    ACCOUNT_ACTIVATION_DAYS = 7
 
     LOGGING = {
       'version': 1,
