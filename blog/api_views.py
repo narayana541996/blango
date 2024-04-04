@@ -33,7 +33,7 @@ def post_list(request):
     post_data = json.loads(request.body)
     post = Post.objects.create(**post_data)
     return HttpResponse(
-      status=HTTPStatus.CREATED, headers={'location': reverse('api_post_detail', args=(post.pk))},
+      status=HTTPStatus.CREATED, headers={'location': reverse('api_post_detail', args=(post.pk,))},
     )
 
   return HttpResponseNotAllowed(['GET', 'POST'])
@@ -46,7 +46,9 @@ def post_detail(request, pk):
 
   if request.method == 'GET':
     return JsonResponse(post_to_dict(post))
+
   elif request.method == 'PUT':
+    print('req body: ', request.body)
     post_data = json.loads(request.body)
     for field, value in post_data.items():
       setattr(post, field, value)
